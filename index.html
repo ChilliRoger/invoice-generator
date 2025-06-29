@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Document Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-row">
+                <strong>Select Template:</strong>
+                <div class="template-buttons">
+                    <button class="template-btn active" onclick="selectTemplate('disbursement')">Final Disbursement Account</button>
+                    <button class="template-btn" onclick="selectTemplate('invoice')">Invoice Statement</button>
+                    <button class="template-btn" onclick="selectTemplate('manifest')">Cargo Manifest</button>
+                </div>
+            </div>
+            
+            <div class="control-row">
+                <label>Rows: <input type="number" id="rows" min="1" max="50" value="7"></label>
+                <label>Columns: <input type="number" id="columns" min="1" max="10" value="6"></label>
+                <button onclick="generateTable()">Generate Table</button>
+                <button onclick="fillSampleData()" id="sampleBtn" disabled>Fill Sample Data</button>
+                <button onclick="clearTable()" id="clearBtn" disabled>Clear Table</button>
+                <button onclick="calculateTotals()" id="calcBtn" class="auto-calc-btn" disabled>Auto-Calculate Totals</button>
+                <button onclick="printDocument()" id="printBtn" disabled>Export To PDF</button>
+            </div>
+            
+            <div class="control-row">
+                <small><strong>Tip:</strong> Use Ctrl+P to print or save as PDF directly from your browser. Text will automatically wrap in cells. Click "Auto-Calculate Totals" to compute totals automatically, or edit the totals manually in the totals section.</small>
+            </div>
+        </div>
+        
+        <div id="documentContainer">
+            <div id="templateContent"></div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
